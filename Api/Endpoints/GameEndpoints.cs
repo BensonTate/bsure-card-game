@@ -1,7 +1,7 @@
 using Api.Data;
 using Api.Dtos;
 using Api.Services;
-using Microsoft.EntityFrameworkCore;
+using Api.Endpoints;
 
 namespace Api.Endpoints;
 
