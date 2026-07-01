@@ -1,6 +1,7 @@
 using Api.Data;
 using Api.Services;
 using Microsoft.EntityFrameworkCore;
+using Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,8 +45,12 @@ using (var scope = app.Services.CreateScope())
 
 app.UseCors();
 
-// Endpoints will be mapped here in the next step.
+// Health-check style root endpoint — useful for confirming the API is up
+// without needing to know a real endpoint URL.
 app.MapGet("/", () => "Card Game API");
+
+// Game endpoints grouped in Endpoints/GameEndpoints.cs for readability.
+app.MapGameEndpoints();
 
 app.Run();
 
