@@ -16,7 +16,7 @@ public static class GameEndpoints
     public static void MapGameEndpoints(this WebApplication app)
     {
         var group = app.MapGroup("/games");
-
+        
         group.MapPost("/", CreateGame);
         group.MapGet("/{id:int}", GetGameById);
         group.MapGet("/", ListGames);

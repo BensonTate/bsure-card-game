@@ -2,6 +2,7 @@ using Api.Data;
 using Api.Services;
 using Microsoft.EntityFrameworkCore;
 using Api.Endpoints;
+using Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,15 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<GameDbContext>();
+    db.Database.EnsureCreated();
+}
+
+// Exception middleware first so it wraps every subsequent handler,
+// including CORS, endpoints, and any middleware added later.
+app.UseExceptionHandlingMiddleware();
 // Create the DB schema on first run. EnsureCreated is appropriate for a
 // throwaway demo DB — no migration history, no upgrade path needed.
 // In a real app this would be `dotnet ef migrations` + `Migrate()`.
