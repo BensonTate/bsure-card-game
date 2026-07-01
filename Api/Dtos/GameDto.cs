@@ -1,5 +1,6 @@
 namespace Api.Dtos;
 
+// Existing records — unchanged.
 public record GameDto(
     int Id,
     DateTime CreatedAt,
@@ -10,12 +11,26 @@ public record PlayerDto(
     int SeatNumber,
     string Name,
     int HandScore,
-    long? SuitProduct,      // Null when this player wasn't part of a tie-break.
+    long? SuitProduct,
     bool IsWinner,
     IReadOnlyList<CardDto> Cards);
 
 public record CardDto(
     int Id,
-    string Rank,            // Serialize as string ("Ace", "King") for frontend readability.
-    string Suit,            // Same reasoning — the frontend renders these directly.
+    string Rank,
+    string Suit,
     int DeckId);
+
+public record GameSummaryDto(
+    int Id,
+    DateTime CreatedAt,
+    int WinnerCount,
+    int TopHandScore,
+    IReadOnlyList<string> WinnerNames);
+
+public record PagedResult<T>(
+    int Page,
+    int PageSize,
+    int TotalCount,
+    int TotalPages,
+    IReadOnlyList<T> Items);
