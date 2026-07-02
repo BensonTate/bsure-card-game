@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Card Game</h1>
+        <div class="controls">
+            <button id="deal-btn">Deal</button>
+            <button id="redeal-btn" disabled>Re-deal</button>
+            <button id="past-games-btn">Past Games</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="game-info" class="game-info hidden">
+            <span>Game <strong id="game-id"></strong></span>
+            <span id="winner-summary"></span>
+        </section>
+
+        <section id="players" class="players-grid">
+            <!-- Populated by app.js -->
+        </section>
+
+        <section id="past-games-panel" class="past-games hidden">
+            <div class="past-games-header">
+                <h2>Past Games</h2>
+                <button id="close-past-btn" class="close-btn">×</button>
+            </div>
+            <div id="past-games-list"></div>
+            <div class="pagination">
+                <button id="prev-page-btn" disabled>Previous</button>
+                <span id="page-indicator"></span>
+                <button id="next-page-btn" disabled>Next</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast hidden" role="alert"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

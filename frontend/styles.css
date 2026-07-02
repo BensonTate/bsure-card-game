@@ -1,0 +1,204 @@
+:root {
+    --bg: #1e1e1e;
+    --panel: #2a2a2a;
+    --border: #3a3a3a;
+    --text: #e8e8e8;
+    --muted: #999;
+    --accent: #4a9eff;
+    --winner: #ffd700;
+    --winner-bg: rgba(255, 215, 0, 0.12);
+    --red-suit: #e05555;
+    --black-suit: #f0f0f0;
+    --error: #e05555;
+    --card-bg: #f8f8f8;
+    --card-text: #111;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+h1 { font-size: 24px; font-weight: 600; }
+
+.controls { display: flex; gap: 8px; }
+
+button {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+button:hover:not(:disabled) { background: var(--border); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+#deal-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.game-info {
+    background: var(--panel);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+#winner-summary { color: var(--winner); font-weight: 500; }
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.player {
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.player.winner {
+    border-color: var(--winner);
+    background: var(--winner-bg);
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.player-name { font-weight: 600; }
+.player-score { color: var(--muted); font-size: 14px; }
+.player-score strong { color: var(--text); font-size: 16px; }
+
+.suit-product {
+    display: block;
+    font-size: 12px;
+    color: var(--winner);
+    margin-top: 2px;
+}
+
+.winner-badge {
+    background: var(--winner);
+    color: #111;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 8px;
+}
+
+.cards {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: var(--card-bg);
+    color: var(--card-text);
+    border-radius: 4px;
+    padding: 8px 6px;
+    min-width: 44px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.card .rank { font-weight: 700; display: block; }
+.card .suit { font-size: 18px; display: block; }
+.card.red { color: var(--red-suit); }
+.card.black { color: #111; }
+
+.past-games {
+    background: var(--panel);
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 24px;
+}
+
+.past-games-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    padding: 0 8px;
+}
+
+.past-game-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr auto;
+    gap: 12px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    font-size: 14px;
+}
+
+.past-game-row .id { color: var(--muted); }
+.past-game-row .date { color: var(--muted); font-size: 12px; }
+.past-game-row .winners { color: var(--winner); }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+#page-indicator { color: var(--muted); font-size: 14px; }
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--error);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    max-width: 400px;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.hidden { display: none !important; }
